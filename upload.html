@@ -1,0 +1,98 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #efefef;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #90ffcf;
+  color: #efefef;
+}
+
+.topnav a.active {
+  background-color: #90ffcf;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
+
+p {
+  margin: 35px;
+}
+
+form {
+  margin: 35px;
+}
+
+input{font-size: 17px;}
+
+.button {
+  background-color: #90ffcf;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 15px 40px;
+  cursor: pointer;
+  width:250px;
+  font-weight: bold;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#news">Take quiz</a>
+  
+  
+    <div class="topnav-right">
+  <a href="#about">Logout</a>
+  </div>
+  
+</div>
+</br>
+
+<p>Click on the "Choose File" button to upload a file:</p>
+
+<form action="/action_page.php">
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+</form>
+
+</br></br>
+
+<a href="admin.html" class="button"> Go back</a>
+
+</body>
+
+</html>
