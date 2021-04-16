@@ -15,11 +15,11 @@
             }
             .container{
                 display: absolute;
-                margin-top: 32px;
+                margin-top: 24px;
                 
 
                 background-color:rgba(255, 255, 255, 0.85);
-                padding: 24px;
+                padding: 18px;
                 border-radius: 18px;
                 
             }
@@ -42,20 +42,33 @@
             }
             .col{
                 padding: 8px;
-                margin: 10px;
+                margin: 6px;
                 background-color: #E8E8E8;
+
+                text-align: left;
 
                 border-color: grey;
                 border-style: solid;
                 border-width: 1px;
                 border-radius: 15px;
 
-                max-width: 300px;
-                min-width: 200px;      
+                max-width: 500px;
+                min-width: 300px;     
             }
             .col:hover{
                 background-color: #D9D9D9;
                 font-weight: 500;
+            }
+            .col:active{
+                background-color: black;
+            }
+            .col:focus{
+                font-weight: 500;
+                background-color: #D9D9D9;
+
+                border: solid;
+                border-color: black;
+                border-width: 3px;
             }
             .timer{
                 background-color: efefef;
@@ -79,6 +92,33 @@
                 top: 0;
                 margin-left: -110px;
             }
+            .next{
+                background-color: #90FFCF;
+                border: none;
+                color: black;
+                font-weight: 500;
+                
+                margin-top: 10px;
+                padding: 8px;
+                border-radius: 10px;
+
+                position: relative;
+                width: 120px;
+                left: 50%;
+                top: 0;
+                margin-left: -60px;
+            }
+            .next:hover{
+                background-color: #19E68E;
+                color: white;
+                font-weight: 600;
+            }
+            /* .next:focus{
+                background-color:  #19E68E;
+                color: white;
+                font-weight: 600;
+                
+            } */
 
             
         </style>
@@ -111,12 +151,25 @@
             
             <div class="options_list">
                 
-                <div class="col">a.Mandya / ಮಂಡ್ಯ</div>
-                <div class="col">b. Bengaluru / ಬೆಂಗಳೂರು</div>
-                <div class="col">c. Mysuru / ಮೈಸೂರು</div>
-                <div class="col">d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</div>
+                <button class="col opta">a.Mandya / ಮಂಡ್ಯ</button>   
+                <br>
+                <button class="col optb">b. Bengaluru / ಬೆಂಗಳೂರು</button>
+                <br>
+                <button class="col optc">c. Mysuru / ಮೈಸೂರು</button>
+                <br>
+                <button class="col optd">d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</button>
+                <!-- <div class="col optb">b. Bengaluru / ಬೆಂಗಳೂರು</div>
+                <div class="col optc">c. Mysuru / ಮೈಸೂರು</div>
+                <div class="col optd">d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</div> -->
 
             </div>
+            <div class="buttons">
+                <button class="next">
+                    Next
+                </button>
+
+            </div>
+            
         </div>
 
         
