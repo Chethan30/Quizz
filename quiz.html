@@ -58,20 +58,43 @@
                 font-weight: 500;
             }
             .timer{
+                background-color: efefef;
+                width: 200px;
+                border: 3px solid red;
+                padding: 3px;
+                margin: 0px; 
+                border-radius:16px;
+                color:red;
                 
+                display: flex;
                 align-content: center;
                 justify-content: center;
             }
+            .time_align{
+                width: 300px;
+                position: relative;
+                left: 50%;
+                top: 0;
+                margin-left: -110px;
+            }
+
             
         </style>
+		<script type="text/javascript" src="timerjs.js"></script>
+
 
     </head>
     <body>
         
     
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-           <div class="timer">
-               <h3>Timer</h3></div>
+           <div class="time_align">
+                <div class="timer">  
+                    &nbsp;TIME : <span id="timer">0</span>
+                </div>  
+            </div>
+		    <!-- <h5 class="text-light">.</h5> -->
+	
         </nav>
         
          <!-- Quiz Box -->
