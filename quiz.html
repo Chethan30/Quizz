@@ -113,12 +113,7 @@
                 color: white;
                 font-weight: 600;
             }
-            /* .next:focus{
-                background-color:  #19E68E;
-                color: white;
-                font-weight: 600;
-                
-            } */
+        
 
             
         </style>
@@ -150,19 +145,20 @@
             
             <div class="options_list">
                 
-                <button class="col opta">a.Mandya / ಮಂಡ್ಯ</button>   
+                <button class="col opta" id="0" onfocus="functionA(0)">a.Mandya / ಮಂಡ್ಯ </button>   
                 <br>
-                <button class="col optb">b. Bengaluru / ಬೆಂಗಳೂರು</button>
+                <button class="col optb" id="1" onclick="functionA(1)" >b. Bengaluru / ಬೆಂಗಳೂರು</button>
                 <br>
-                <button class="col optc">c. Mysuru / ಮೈಸೂರು</button>
+                <button class="col optc" id="2" onclick="functionA(2)" >c. Mysuru / ಮೈಸೂರು</button>
                 <br>
-                <button class="col optd">d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</button>
+                <button class="col optd" id="3" onclick="functionA(3)" >d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</button>
 
-            </div>
+            </div
             <div class="buttons">
-                <button class="next">
+                <button class="next" onclick="myFunction()">
                     Next
                 </button>
+                <p id="test" > Answer Will be updated here </p>
 
             </div>
             

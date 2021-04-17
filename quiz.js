@@ -20,3 +20,39 @@ window.onload = countdown;
     /* startbtn.addEventListener('click', countdown) */ //in case timer starting needs to be controlled 
 })
 
+var a = "submit"
+var btnch = -1
+var choice = ""
+var item = ""
+
+function functionA(btn){
+
+	if(btn==0){
+		choice = document.getElementById("0").innerHTML;
+		// document.getElementById("0").value = choice;
+		// console.log(choice);
+	}
+	if(btn==1){
+		choice = document.getElementById("1").innerHTML;
+	}
+	if(btn==2){
+		choice = document.getElementById("2").innerHTML;
+	}
+	if(btn==3){
+		choice = document.getElementById("3").innerHTML;
+	}
+	btnch = btn;
+	
+}
+
+function myFunction(){
+
+	if(btnch>-1){
+		document.getElementById("test").innerHTML = choice;
+		// console.log(document.getElementById("item").value);
+	}
+	else{
+		document.getElementById("test").innerHTML = a;
+	}
+	
+}
