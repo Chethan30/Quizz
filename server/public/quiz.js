@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded',() => {
 	var a;
 	
 	function countdown(){
+		makeQuestion();
 		setInterval(function(){
 			if(timeleft <= 0 ) {
 				clearInterval(timeleft = 0)
@@ -14,33 +15,21 @@ document.addEventListener('DOMContentLoaded',() => {
 		    timeleftdisplay.innerHTML = a + ' secs'
 		    timeleft-=1
 	     },1000);
-		 const xhr = new XMLHttpRequest();
+	 
+	}
+	function fetchQuestions(){
+		const xhr = new XMLHttpRequest();
 		xhr.open('GET', '/takequiz', true);
 		xhr.onload = function () {
 			console.log(xhr.responseText+"response text");
 			arr = JSON.parse(xhr.responseText);
-			makeQuestion();
+			countdown();
 		}
 		xhr.send();
 	
-	 
 	}
-	// functions displayInstructions(){
+window.onload = fetchQuestions;
 
-	// }
-	// function fetchQuestions(){
-	// 	console.log("JERE")
-	// 	const xhr = new XMLHttpRequest();
-	// 	xhr.open('GET', '/takequiz', true);
-	// 	xhr.onload = function () {
-	// 		console.log(xhr.responseText+"response text");
-	// 		arr = JSON.parse(xhr.responseText);
-	// 		makeQuestion();
-	// 	}
-	// 	xhr.send();
-	
-	// }
-window.onload = countdown;
     /* startbtn.addEventListener('click', countdown) */ //in case timer starting needs to be controlled 
 })
 
@@ -48,7 +37,13 @@ var a = "submit"
 var btnch = -1
 var choice = ""
 var item = ""
-function makeQuestion(){     
+var i=0;
+function makeQuestion(){   
+	if(i>=arr.length){
+		window.location="image_quiz.html";
+	}  
+	console.log(arr.length)
+	console.log(i)
 	document.getElementById("question").innerHTML=arr[i].Question;
 	document.getElementById("question_kan").innerHTML=arr[i + 1].Question;
 	document.getElementById("0").innerHTML="1. "+arr[i].Option1+"/"+arr[i + 1].Option1;
@@ -58,8 +53,18 @@ function makeQuestion(){
 	correctans=arr[i].Answer;
 	i += 2;
 }
+function displayRightAns(){
+	document.getElementById("nextbutton").stye="none"
+	document.getElementById("test").innerHTML = correctans;
+	setTimeout(()=>{
+		document.getElementById("test").innerHTML = "";
+		makeQuestion();
+	},5000);
+	
+}
 
 function functionA(btn){
+
 
 	if(btn==0){
 		choice = document.getElementById("0").innerHTML;
@@ -78,6 +83,18 @@ function functionA(btn){
 	btnch = btn;
 	
 }
+
+
+
+// document.getElementById("nextbutton").addEventListener('click',()=>{
+// 	console.log(correctans)
+// 	document.getElementById("test").innerHTML = correctans;
+// 	setTimeout(()=>{
+// 		makeQuestion();
+// 	},6000);
+	
+// });
+
 
 function myFunction(){
 
