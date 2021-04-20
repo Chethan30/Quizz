@@ -7,11 +7,11 @@ const mongo_oper = require("./mongodb_operations");
 const { response, urlencoded } = require("express");
 const connect = require("./models/db");
 const Round1 = require("./models/Round1model");
-//const User = require("./models/UserModel");
 const cookie= require('cookie');
 require("dotenv").config();
 const app = express();
 var loggedin="false";
+var studentdetails=[];
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads");
@@ -35,38 +35,23 @@ app.use(express.static("public"));
 app.use('/admins',express.static("admin"));
 
 
-// function isLoggedIn(req,res,next){
-//   if (loggedin=="true") {
-//     return next(); 
-//   } else {
-//     res.redirect("/"); 
-//   }
-// }
-// app.all('/admins/*', function (req, res, next) {
-//   if (loggedin=="true") {
-//     console.log("ggg");
-//     res.setHeader('Set-Cookie',cookie.serialize('name','admin',{
-//       maxAge: 30*30*30,
-      
-//     }));
-    
-//     console.log("cookie set");
-//      next(); 
-//   } 
- 
-//   else {
-//     console.log("ddd")
-//     res.redirect("/"); 
-//   }
-// })
+function isLoggedIn(req,res,next){
+  if (loggedin=="true") {
+    return next(); 
+  } else {
+    res.redirect("/"); 
+  }
+}
 
-app.get('/admins/adminhome',(req,res)=>{
+
+app.get('/admins/adminhome',isLoggedIn,(req,res)=>{
       res.redirect("admin.html");
    
 });
 
 app.post("/login", (req,res)=>{
   if(req.body.username == 'shruthii1410@gmail.com' && req.body.password =="password"){
+    loggedin="true";
     res.setHeader('Set-Cookie',cookie.serialize('name','admin',{
         maxAge: 30*30*30,
             
@@ -85,14 +70,14 @@ app.post("/registrationdone", (req, res) => {
   res.redirect("quiz.html");
 });
 
-app.post("/onupload", upload.single("quizques"), (req, res) => {
+app.post("/admins/onupload",isLoggedIn, upload.single("quizques"), (req, res) => {
   console.log("in upload");
   console.log(req.file.filename);
   converted_data = conversion(req.file.filename);
   console.log(converted_data);
   Round1.create(converted_data).then(function (round1) {
     mongo_oper.first(connect.getConnection, converted_data);
-    res.send(rd1);
+    res.redirect('admins/adminhome')
   });
 });
 
@@ -111,9 +96,9 @@ app.get("/takequiz", (req, res) => {
 });
 
 app.post("/takequiz", (req, res) => {
-  console.log(req.body);
+  studentdetails.push(req.body);
 });
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log("Server started"));
