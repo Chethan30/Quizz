@@ -140,24 +140,24 @@
             <div class="qnumber"> Question : <span> 1 </span></div>
             
             <div class="questions">
-                <div class="question">What is the capital of Karnataka?</div>
-                <div class="question_kan">ಕರ್ನಾಟಕದ ರಾಜಧಾನಿ ಯಾವುದು?</div>
+                <div class="question" id="question"></div>
+                <div class="question_kan" id="question_kan"></div>
             </div>
             
             <div class="options_list">
                 
-                <button class="col opta" id="0" onfocus="functionA(0)">a.Mandya / ಮಂಡ್ಯ </button>   
+                <button class="col opta" id="0" onclick="functionA(0)"> </button>   
                 <br>
-                <button class="col optb" id="1" onclick="functionA(1)" >b. Bengaluru / ಬೆಂಗಳೂರು</button>
+                <button class="col optb" id="1" onclick="functionA(1)" ></button>
                 <br>
-                <button class="col optc" id="2" onclick="functionA(2)" >c. Mysuru / ಮೈಸೂರು</button>
+                <button class="col optc" id="2" onclick="functionA(2)" ></button>
                 <br>
-                <button class="col optd" id="3" onclick="functionA(3)" >d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</button>
+                <button class="col optd" id="3" onclick="functionA(3)" ></button>
 
             </div>
             <div class="buttons">
-                <button class="next" onclick="myFunction()">
-                    Next
+                <button class="next"  id="nextbutton" onclick="displayRightAns()">
+                   Submit
                 </button>
                 <p id="test" > Answer Will be updated here </p>
 
