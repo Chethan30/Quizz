@@ -33,30 +33,51 @@ window.onload = fetchQuestions;
     /* startbtn.addEventListener('click', countdown) */ //in case timer starting needs to be controlled 
 })
 
-var a = "submit"
-var btnch = -1
+var ans = "";
+var response={};
+var score=0;
 var choice = ""
 var item = ""
 var i=0;
 function makeQuestion(){   
-	if(i>=arr.length){
-		window.location="image_quiz.html";
+	if(i>=2){
+		response["round1score"]=score;
+		
+		 fetch('/round1', {
+			method: 'POST',
+			headers: {
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(response)
+		  });
+		  	
+	window.location="image_quiz.html";
 	}  
-	console.log(arr.length)
 	console.log(i)
+	console.log(arr.length)
+	console.log(arr[i].Question)
 	document.getElementById("question").innerHTML=arr[i].Question;
 	document.getElementById("question_kan").innerHTML=arr[i + 1].Question;
 	document.getElementById("0").innerHTML="1. "+arr[i].Option1+"/"+arr[i + 1].Option1;
 	document.getElementById("1").innerHTML="2. "+arr[i].Option2+"/"+arr[i + 1].Option2;
 	document.getElementById("2").innerHTML="3. "+arr[i].Option3+"/"+arr[i + 1].Option3;
 	document.getElementById("3").innerHTML="4. "+arr[i].Option4+"/"+arr[i + 1].Option4;
-	correctans=arr[i].Answer;
+	correctans=arr[i].Answer+"/"+arr[i+1].Answer;
 	i += 2;
 }
 function displayRightAns(){
-	document.getElementById("nextbutton").stye="none"
+	document.getElementById("nextbutton").disabled=true;
 	document.getElementById("test").innerHTML = correctans;
+	if(correctans==ans.slice(3)){
+		score++;
+	}
+	response["choice"+i]=ans;
+	ans="";
+	console.log(response);
+	console.log("SCORE",score);
 	setTimeout(()=>{
+		document.getElementById("nextbutton").disabled=false;
 		document.getElementById("test").innerHTML = "";
 		makeQuestion();
 	},5000);
@@ -67,43 +88,18 @@ function functionA(btn){
 
 
 	if(btn==0){
-		choice = document.getElementById("0").innerHTML;
-		// document.getElementById("0").value = choice;
-		// console.log(choice);
+		ans = document.getElementById("0").innerHTML;
+		
 	}
 	if(btn==1){
-		choice = document.getElementById("1").innerHTML;
+		ans = document.getElementById("1").innerHTML;
 	}
 	if(btn==2){
-		choice = document.getElementById("2").innerHTML;
+		ans = document.getElementById("2").innerHTML;
 	}
 	if(btn==3){
-		choice = document.getElementById("3").innerHTML;
-	}
-	btnch = btn;
-	
-}
-
-
-
-// document.getElementById("nextbutton").addEventListener('click',()=>{
-// 	console.log(correctans)
-// 	document.getElementById("test").innerHTML = correctans;
-// 	setTimeout(()=>{
-// 		makeQuestion();
-// 	},6000);
-	
-// });
-
-
-function myFunction(){
-
-	if(btnch>-1){
-		document.getElementById("test").innerHTML = choice;
-		// console.log(document.getElementById("item").value);
-	}
-	else{
-		document.getElementById("test").innerHTML = a;
+		ans = document.getElementById("3").innerHTML;
 	}
 	
 }
+
