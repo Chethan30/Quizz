@@ -2,12 +2,13 @@ require("./models/db");
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
-const conversion = require("./exceltojson");
+const {Round1conversion,Round2conversion} = require("./exceltojson");
 const mongo_oper = require("./mongodb_operations");
 const { response, urlencoded } = require("express");
 const connect = require("./models/db");
 const Round1 = require("./models/Round1model");
 const cookie= require('cookie');
+var bp = require('body-parser');
 require("dotenv").config();
 const app = express();
 var loggedin="false";
@@ -46,7 +47,6 @@ function isLoggedIn(req,res,next){
 
 app.get('/admins/adminhome',isLoggedIn,(req,res)=>{
       res.redirect("admin.html");
-   
 });
 
 app.post("/login", (req,res)=>{
@@ -66,18 +66,18 @@ app.post("/login", (req,res)=>{
 
 
 app.post("/registrationdone", (req, res) => {
-  console.log(req.body);
+  studentdetails.push(req.body);
   res.redirect("instructions.html");
 });
 
 app.post("/admins/onupload",isLoggedIn, upload.single("quizques"), (req, res) => {
   console.log("in upload");
   console.log(req.file.filename);
-  converted_data = conversion(req.file.filename);
+  converted_data = Round1conversion(req.file.filename);
   console.log(converted_data);
   Round1.create(converted_data).then(function (round1) {
     mongo_oper.first(connect.getConnection, converted_data);
-    res.redirect('admins/adminhome')
+    res.redirect('/admins/adminhome');
   });
 });
 
@@ -95,10 +95,11 @@ app.get("/takequiz", (req, res) => {
     });
 });
 
-app.post("/takequiz", (req, res) => {
-  studentdetails.push(req.body);
-});
 
+app.post('/round1',(req,res)=>{
+  studentdetails.push(JSON.parse(JSON.stringify(req.body)));
+  console.log(studentdetails)
+});
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log("Server started"));
