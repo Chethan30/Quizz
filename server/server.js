@@ -67,7 +67,7 @@ app.post("/login", (req,res)=>{
 
 app.post("/registrationdone", (req, res) => {
   console.log(req.body);
-  res.redirect("quiz.html");
+  res.redirect("instructions.html");
 });
 
 app.post("/admins/onupload",isLoggedIn, upload.single("quizques"), (req, res) => {
