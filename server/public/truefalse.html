@@ -1,12 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Quiz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+        <style>
+            body{
+                background-color:#90FFCF;
+            }
+            .container{
+                display: absolute;
+                margin-top: 24px;
+                
+
+                background-color:rgba(255, 255, 255, 0.85);
+                padding: 18px;
+                border-radius: 18px;
+                
+            }
+            .type{
+                font-weight: bolder;
+                font-size: 180%;
+            }
+            .qnumber{
+                font-weight: bold;
+                font-size: 150%;
+                padding-bottom: 24px;
+            }
+            .question, .question_kan{
+                font-weight: 500;
+                font-size: 130%;
+                padding-left: 10px;
+            }
+            .questions{
+                padding-bottom: 18px;
+            }
+            .col{
+                padding: 8px;
+                margin: 6px;
+                background-color: #E8E8E8;
+
+                text-align: left;
+
+                border-color: grey;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 15px;
+
+                max-width: 500px;
+                min-width: 300px;     
+            }
+            .col:hover{
+                background-color: #D9D9D9;
+                font-weight: 500;
+            }
+            .col:active{
+                background-color: black;
+            }
+            .col:focus{
+                font-weight: 500;
+                background-color: #D9D9D9;
+
+                border: solid;
+                border-color: black;
+                border-width: 3px;
+            }
+            .timer{
+                background-color: efefef;
+                width: 200px;
+                border: 3px solid #FF3B3B;
+                padding: 3px;
+                margin: 0px; 
+                border-radius: 16px;
+                color:#A10000;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-weight: 700;
+                
+                display: flex;
+                align-content: center;
+                justify-content: center;
+            }
+            .time_align{
+                width: 300px;
+                position: relative;
+                left: 50%;
+                top: 0;
+                margin-left: -110px;
+            }
+            .next{
+                background-color: #90FFCF;
+                border: none;
+                color: black;
+                font-weight: 500;
+                
+                margin-top: 10px;
+                padding: 8px;
+                border-radius: 10px;
+
+                position: relative;
+                width: 120px;
+                left: 50%;
+                top: 0;
+                margin-left: -60px;
+            }
+            .next:hover{
+                background-color: #19E68E;
+                color: white;
+                font-weight: 600;
+            }
+           
+
+ 
+            
+        </style>
+		<script type="text/javascript" src="quiz.js"></script>
+
+
+    </head>
+    <body>
+        
     
-</body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+           <div class="time_align">
+                <div class="timer">  
+                    &nbsp;TIME :&nbsp; <span id="timer">0</span>
+                </div>  
+            </div>
+	
+        </nav>
+        
+         <!-- Quiz Box -->
+        <div class="container">
+            <div class="type">Multiple Choice Question</div>
+            <div class="qnumber"> Question : <span> 1 </span></div>
+            
+            <div class="questions">
+                <div class="question" id="question"></div>
+                <div class="question_kan" id="question_kan"></div>
+            </div>
+            
+            <div class="options_list">
+                
+                <button class="col opta" id="0" onclick="functionA(0)"> True </button>   
+                <br>
+                <button class="col optb" id="1" onclick="functionA(1)" >False</button>
+                <br>
+                
+
+            </div>
+            <div class="buttons">
+                <button class="next"  id="nextbutton" onclick="displayRightAns()">
+                   Submit
+                </button>
+                <p id="test" > Answer Will be updated here </p>
+
+            </div>
+        </div>
+            
+            
+         
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    </body>
+    <script>
+        
+    </script>
 </html>

@@ -8,5 +8,5 @@ mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser : true, useUnifiedTopo
 
 exports.getConnection = mongoose.connection;
 
-
 require("./Round1model");
+require("./Round2model")

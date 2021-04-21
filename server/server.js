@@ -1,3 +1,4 @@
+require("dotenv").config();
 require("./models/db");
 const express = require("express");
 const cors = require("cors");
@@ -9,7 +10,7 @@ const connect = require("./models/db");
 const Round1 = require("./models/Round1model");
 const cookie= require('cookie');
 var bp = require('body-parser');
-require("dotenv").config();
+
 const app = express();
 var loggedin="false";
 var studentdetails=[];
