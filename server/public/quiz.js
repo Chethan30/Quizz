@@ -31,8 +31,11 @@ document.addEventListener('DOMContentLoaded',() => {
 			countdown();
 		}
 		xhr.send();
-	
+		
 	}
+
+	
+	
 window.onload = fetchQuestions;
 
     /* startbtn.addEventListener('click', countdown) */ //in case timer starting needs to be controlled 
