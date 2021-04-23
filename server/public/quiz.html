@@ -113,8 +113,9 @@
                 color: white;
                 font-weight: 600;
             }
-        
+           
 
+ 
             
         </style>
 		<script type="text/javascript" src="quiz.js"></script>
@@ -139,34 +140,56 @@
             <div class="qnumber"> Question : <span> 1 </span></div>
             
             <div class="questions">
-                <div class="question">What is the capital of Karnataka?</div>
-                <div class="question_kan">ಕರ್ನಾಟಕದ ರಾಜಧಾನಿ ಯಾವುದು?</div>
+                <div class="question" id="question"></div>
+                <div class="question_kan" id="question_kan"></div>
             </div>
             
             <div class="options_list">
                 
-                <button class="col opta" id="0" onfocus="functionA(0)">a.Mandya / ಮಂಡ್ಯ </button>   
+                <button class="col opta" id="0" onclick="functionA(0)"> </button>   
                 <br>
-                <button class="col optb" id="1" onclick="functionA(1)" >b. Bengaluru / ಬೆಂಗಳೂರು</button>
+                <button class="col optb" id="1" onclick="functionA(1)" ></button>
                 <br>
-                <button class="col optc" id="2" onclick="functionA(2)" >c. Mysuru / ಮೈಸೂರು</button>
+                <button class="col optc" id="2" onclick="functionA(2)" ></button>
                 <br>
-                <button class="col optd" id="3" onclick="functionA(3)" >d. Hubballi / ಹುಬ್ಬಳ್ಳಿ</button>
+                <button class="col optd" id="3" onclick="functionA(3)" ></button>
 
-            </div
+            </div>
             <div class="buttons">
-                <button class="next" onclick="myFunction()">
-                    Next
+                <button class="next"  id="nextbutton" onclick="displayRightAns()">
+                   Submit
                 </button>
                 <p id="test" > Answer Will be updated here </p>
 
             </div>
-            
         </div>
-
+            
+            
+         
+        </div>
+       
+       
+        <script>
+            
+           
+            document.getElementById("nextbutton").addEventListener("click", () =>{
+                console.log("inside load")
         
+                document.documentElement.requestFullscreen().catch((e) =>{
+            
+            console.log(e)
+            
+            
+                });
+            });
+           
+            
+    </script>
+    
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     </body>
-    </body>
+    <script>
+        
+    </script>
 </html>
