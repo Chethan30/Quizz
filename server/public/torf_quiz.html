@@ -135,27 +135,28 @@
         
          <!-- Quiz Box -->
         <div class="container">
-            <div class="type">Multiple Choice Question</div>
+            <div class="type">True or False</div>
             <div class="qnumber"> Question : <span> 1 </span></div>
             
             <div class="questions">
-                <div class="question">What is the capital of Karnataka?</div>
-                <div class="question_kan">ಕರ್ನಾಟಕದ ರಾಜಧಾನಿ ಯಾವುದು?</div>
+                <div class="question" id="question"></div>
+                <div class="question_kan" id="question_kan"></div>
             </div>
             
             <div class="options_list">
                 
-                <button class="col truee" id="0" onfocus="functionA(0)">a. True / ಸರಿ</button>   
+                <button class="col truee" id="0" onclick="recordAns(0)" >a. True / ಸರಿ</button>   
                 <br>
-                <button class="col false" id="1" onclick="functionA(1)">b. False / ತಪ್ಪು</button>
+                <button class="col false" id="1" onclick="recordAns(1)">b. False / ತಪ್ಪು</button>
                 <br>
 
             </div>
             <div class="buttons">
-                <button class="next" onclick="myFunction()">
+                <button class="next" id="nextbutton" onclick="displayRightAns()">
                     Next
                 </button>
-                <p id="test" > Answer Will be updated here </p>
+                <p id="answer" > </p>
+                <p id="comments" > </p>
 
             </div>
            

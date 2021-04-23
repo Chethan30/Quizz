@@ -3,7 +3,11 @@ require("./models/db");
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
-const { Round1conversion, Round2conversion, Round3conversion } = require("./exceltojson");
+const {
+  Round1conversion,
+  Round2conversion,
+  Round3conversion,
+} = require("./exceltojson");
 const mongo_oper = require("./mongodb_operations");
 const { response, urlencoded } = require("express");
 const connect = require("./models/db");
@@ -11,8 +15,9 @@ const Round1 = require("./models/Round1model");
 const Round2 = require("./models/Round2model");
 const Round3 = require("./models/Round3model");
 const cookie = require("cookie");
-var bp = require("body-parser");
-
+const fs = require("fs");
+const https = require("https");
+var request = require('request');
 const app = express();
 var loggedin = "false";
 var studentdetails = [];
@@ -104,7 +109,7 @@ app.post(
           r2 = 1;
         });
     });
-    Round2.create(converted_data2).then(function (round2) {
+    Round3.create(converted_data2).then(function (round3) {
       mongo_oper
         .Round3insert(connect.getConnection, converted_data3)
         .then(function () {
@@ -117,6 +122,31 @@ app.post(
       console.log("r1==" + r1 + "r2==" + r2 + "r3==" + r3);
       if (r1 == 1 && r2 == 1 && r3 == 1) {
         clearInterval(stop);
+        mongo_oper
+          .getRound3Questions(connect.getConnection)
+          .then(function (r) {
+            var arr =r;
+            for (var i = 0; i < arr.length; i++) {
+              saveImageToDisk(
+                arr[i].Images,
+                "./public/round3images/" + i + ".jpg",
+                i
+              );
+            }
+            function saveImageToDisk(url, path, i) {
+              var fullUrl = url;
+              console.log(fullUrl);
+              var localPath = fs.createWriteStream(path);
+              var r = https.get(fullUrl, function (response) {
+                console.log(i);
+                response.pipe(localPath);
+                
+              })
+            }
+          })
+          .catch(function (err) {
+            console.log("erroeserves" + err);
+          });
         res.redirect("admin.html");
       }
     }, 1000);
@@ -124,7 +154,6 @@ app.post(
 );
 
 app.get("/takequiz", (req, res) => {
-  console.log("in get");
   mongo_oper
     .second(connect.getConnection)
     .then(function (r) {
@@ -141,5 +170,46 @@ app.post("/round1", (req, res) => {
   studentdetails.push(JSON.parse(JSON.stringify(req.body)));
 });
 
+app.get("/takeround2", (req, res) => {
+  mongo_oper
+    .getRound2Questions(connect.getConnection)
+    .then(function (r) {
+      console.log("resolved");
+      res.json(r);
+    })
+    .catch(function (err) {
+      console.log("erroeserves" + err);
+      res.send(err);
+    });
+});
+app.get("/takeround3", (req, res) => {
+  mongo_oper
+    .getRound3Questions(connect.getConnection)
+    .then(function (r) {
+      console.log("resolved");
+      res.json(r);
+    })
+    .catch(function (err) {
+      console.log("erroeserves" + err);
+      res.send(err);
+    });
+});
+app.post("/round2", (req, res) => {
+  studentdetails.push(JSON.parse(JSON.stringify(req.body)));
+  console.log(studentdetails);
+});
+app.post("/round3", (req, res) => {
+  studentdetails.push(JSON.parse(JSON.stringify(req.body)));
+  fs.createWriteStream()
+});
+
+app.get('/endtest',(req,res)=>{
+  console.log(studentdetails[0]['pnumber']);
+  var path ="./responses/"+studentdetails[0]['pnumber']+".txt";
+  var file = fs.createWriteStream(path);
+  file.on('error', function(err) { /* error handling */ });
+studentdetails.forEach(function(v) { file.write((JSON.stringify(v))+ '\n'); });
+file.end();
+})
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log("Server started"));
