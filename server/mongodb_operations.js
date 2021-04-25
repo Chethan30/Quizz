@@ -8,14 +8,14 @@ exports.first = async function (db, data) {
 exports.second = function (db) {
 
     return new Promise(function (resolve, reject) {
-        console.log("Shruthii");
+       
         db.on('error', console.error.bind(console, 'MongoDB connection error:'));
         db.collection("Round1").find({}).toArray(function(err,data){
             if(!err){
                 resolve(data);
             }
             else{
-                console.log("error");
+               
                 reject("not res");
             }
         });
@@ -41,14 +41,12 @@ exports.Round3insert = async function(db,data){
 exports.getRound2Questions = function (db) {
 
     return new Promise(function (resolve, reject) {
-        console.log("Shruthii");
         db.on('error', console.error.bind(console, 'MongoDB connection error:'));
         db.collection("Round2").find({}).toArray(function(err,data){
             if(!err){
                 resolve(data);
             }
             else{
-                console.log("error");
                 reject("not res");
             }
         });
@@ -61,7 +59,6 @@ exports.getRound2Questions = function (db) {
 exports.getRound3Questions = function (db) {
 
     return new Promise(function (resolve, reject) {
-        console.log("Shruthii");
         db.on('error', console.error.bind(console, 'MongoDB connection error:'));
         db.collection("Round3").find({}).toArray(function(err,data){
             if(!err){

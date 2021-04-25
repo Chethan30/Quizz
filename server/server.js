@@ -17,10 +17,10 @@ const Round3 = require("./models/Round3model");
 const cookie = require("cookie");
 const fs = require("fs");
 const https = require("https");
-var request = require('request');
+var request = require("request");
 const app = express();
 var loggedin = "false";
-var studentdetails = [];
+var studentdetails = {};
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads");
@@ -57,8 +57,8 @@ app.get("/admins/adminhome", isLoggedIn, (req, res) => {
 
 app.post("/login", (req, res) => {
   if (
-    req.body.username == "shruthii1410@gmail.com" &&
-    req.body.password == "password"
+    req.body.username == process.env.USER_NAME &&
+    req.body.password == process.env.PASSWORD
   ) {
     loggedin = "true";
     res.setHeader(
@@ -74,7 +74,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/registrationdone", (req, res) => {
-  studentdetails.push(req.body);
+  studentdetails=req.body;
   res.redirect("instructions.html");
 });
 
@@ -86,18 +86,13 @@ app.post(
     var r1 = 0,
       r2 = 0,
       r3 = 0;
-    console.log("in upload");
-    console.log(req.file.filename);
     converted_data1 = Round1conversion(req.file.filename);
     converted_data2 = Round2conversion(req.file.filename);
     converted_data3 = Round3conversion(req.file.filename);
-    console.log(converted_data3);
-    // let ress;
     Round1.create(converted_data1).then(function () {
       mongo_oper
         .first(connect.getConnection, converted_data1)
         .then(function () {
-          console.log("r1");
           r1 = 1;
         });
     });
@@ -105,7 +100,6 @@ app.post(
       mongo_oper
         .Round2insert(connect.getConnection, converted_data2)
         .then(function () {
-          console.log("r2");
           r2 = 1;
         });
     });
@@ -113,19 +107,25 @@ app.post(
       mongo_oper
         .Round3insert(connect.getConnection, converted_data3)
         .then(function () {
-          console.log("r3");
           r3 = 1;
         });
     });
 
     var stop = setInterval(() => {
-      console.log("r1==" + r1 + "r2==" + r2 + "r3==" + r3);
       if (r1 == 1 && r2 == 1 && r3 == 1) {
         clearInterval(stop);
         mongo_oper
           .getRound3Questions(connect.getConnection)
           .then(function (r) {
-            var arr =r;
+            var arr = r;
+            arr.sort((a,b)=>{
+              if(a.QNO<b.QNO){
+                return -1;
+              }
+              else{
+                return 1;
+              }
+            });
             for (var i = 0; i < arr.length; i++) {
               saveImageToDisk(
                 arr[i].Images,
@@ -135,17 +135,13 @@ app.post(
             }
             function saveImageToDisk(url, path, i) {
               var fullUrl = url;
-              console.log(fullUrl);
               var localPath = fs.createWriteStream(path);
-              var r = https.get(fullUrl, function (response) {
-                console.log(i);
+               https.get(fullUrl, function (response) {
                 response.pipe(localPath);
-                
-              })
+              });
             }
           })
           .catch(function (err) {
-            console.log("erroeserves" + err);
           });
         res.redirect("admin.html");
       }
@@ -157,28 +153,21 @@ app.get("/takequiz", (req, res) => {
   mongo_oper
     .second(connect.getConnection)
     .then(function (r) {
-      console.log("resolved");
       res.json(r);
     })
     .catch(function (err) {
-      console.log("erroeserves" + err);
       res.send(err);
     });
 });
 
-app.post("/round1", (req, res) => {
-  studentdetails.push(JSON.parse(JSON.stringify(req.body)));
-});
 
 app.get("/takeround2", (req, res) => {
   mongo_oper
     .getRound2Questions(connect.getConnection)
     .then(function (r) {
-      console.log("resolved");
       res.json(r);
     })
     .catch(function (err) {
-      console.log("erroeserves" + err);
       res.send(err);
     });
 });
@@ -186,30 +175,71 @@ app.get("/takeround3", (req, res) => {
   mongo_oper
     .getRound3Questions(connect.getConnection)
     .then(function (r) {
-      console.log("resolved");
+     
       res.json(r);
     })
     .catch(function (err) {
-      console.log("erroeserves" + err);
       res.send(err);
     });
 });
-app.post("/round2", (req, res) => {
-  studentdetails.push(JSON.parse(JSON.stringify(req.body)));
-  console.log(studentdetails);
-});
+
 app.post("/round3", (req, res) => {
-  studentdetails.push(JSON.parse(JSON.stringify(req.body)));
-  fs.createWriteStream()
+  studentdetails={...studentdetails, ...JSON.parse(JSON.stringify(req.body))};
 });
 
-app.get('/endtest',(req,res)=>{
-  console.log(studentdetails[0]['pnumber']);
-  var path ="./responses/"+studentdetails[0]['pnumber']+".txt";
+app.get("/endtest", (req, res) => {
+  
+const folderName = './responses'
+
+try {
+  if (!fs.existsSync(folderName)) {
+    fs.mkdirSync(folderName)
+  }
+} catch (err) {
+  console.error(err)
+}
+  var path = "./responses/" + studentdetails["pnumber"]+ Date.now() + ".txt";
   var file = fs.createWriteStream(path);
-  file.on('error', function(err) { /* error handling */ });
-studentdetails.forEach(function(v) { file.write((JSON.stringify(v))+ '\n'); });
-file.end();
+  file.write(JSON.stringify(studentdetails) + "\n");
+  file.end();
+ 
+});
+
+app.get("/admins/mailresponse", (req, res) => {
+  let directory_name = "./responses";
+ 
+  let openedDir = fs.opendirSync(directory_name);
+  let filesLeft = true;
+  fs.open('finalresponse.txt', 'w', function (err, file) {
+    if (err) throw err;
+  
+  });
+  while (filesLeft) {
+    let fileDirent = openedDir.readSync();
+    if (fileDirent != null) {
+
+    var data= fs.readFileSync("./responses/"+fileDirent.name, "utf8");
+    fs.appendFileSync('finalresponse.txt',data+"\n");
+    }
+    
+    else filesLeft = false;
+  }
+ 
+ res.download("finalresponse.txt")
+});
+app.get('/admins/del',()=>{
+  const fs = require('fs').promises;
+
+const directory = './responses';
+
+fs.rmdir(directory, { recursive: true });
+
+
+});  
+app.get('/logout',(req,res)=>{
+  res.clearCookie("name");
+  loggedin="false";
+  res.redirect('/');
 })
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log("Server started"));

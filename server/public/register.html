@@ -155,11 +155,17 @@
       </form>
     </div>
 
-    <!-- Info Box -->
-   
-   
+<script>
+  	window.localStorage.setItem("i",0);
+    window.localStorage.setItem("j",0);
+    window.localStorage.setItem("k",0);
+		window.localStorage.setItem("response",'{}');
+		window.localStorage.setItem("score",0);
+    window.localStorage.setItem("timer",3600);
+function preventBack() { window.history.forward(); }  
+setTimeout("preventBack()", 0);  
+window.onunload = function () { null };  
 
-    <script src="script_instructions.js"></script>
-
+</script>
   </body>
 </html>
