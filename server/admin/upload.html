@@ -117,7 +117,7 @@
     
     <div class="topnav-right">
       <form class="d-flex">
-        <a class="btn btn-outline-primary logout" href="" role="button"> Logout </a>  
+        <a class="btn btn-outline-primary logout" href="" id="logout" role="button"> Logout </a>  
       </form>
     </div>
     
@@ -151,11 +151,16 @@
 <script>
   window.addEventListener('load', (event) => {
     if(document.cookie=="name=admin")
-     alert(document.cookie);
-    else
+     {}
+    else{
     window.location="/";
+    }
 });
-
+document.getElementById("logout").addEventListener('click',()=>{
+    var xhr = new XMLHttpRequest;
+    xhr.open('GET','/logout',true);
+    xhr.send();
+  })
  
 </script>
 </html>

@@ -1,33 +1,34 @@
-var timer = 3220;
 document.addEventListener('DOMContentLoaded',() => {
 	const timeleftdisplay = document.querySelector('#timer')
-	/* const startbtn = document.querySelector('#startbutton') */
+	timer = window.localStorage.getItem("timer");
 	
 	function countdown(){
 		makeQuestion();
 		setInterval(function(){
 			console.log(timer);
 			minutes = parseInt(timer / 60, 10);
-			seconds = parseInt(timer % 60, 10);
-	
+			seconds = parseInt(timer % 60, 10);	
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			timeleftdisplay.innerHTML=minutes+":"+seconds;
-			//display.textContent = minutes + ":" + seconds;
 			timer=timer-1;
-			// if (--timer < 0) {
-			// 	timer = duration;
-			// }
+			window.localStorage.setItem("timer",timer);
 		}, 1000);
 	 
 	}
-	function fetchQuestions(){
-
+	function fetchQuestions(){		
 		const xhr = new XMLHttpRequest();
 		xhr.open('GET', '/takequiz', true);
 		xhr.onload = function () {
-			console.log(xhr.responseText+"response text");
 			arr = JSON.parse(xhr.responseText);
+			arr.sort((a,b)=>{
+				if(a.QNO<b.QNO){
+					return -1;
+				}
+				else{
+					return 1;
+				}
+			})
 			countdown();
 		}
 		xhr.send();
@@ -38,33 +39,19 @@ document.addEventListener('DOMContentLoaded',() => {
 	
 window.onload = fetchQuestions;
 
-    /* startbtn.addEventListener('click', countdown) */ //in case timer starting needs to be controlled 
 })
 
 var ans = "";
-var response={};
-var score=0;
 var choice = ""
 var item = ""
-var i=0;
+var response=JSON.parse(window.localStorage.getItem("response"));
+var score=parseInt(window.localStorage.getItem("score"));
+var i=parseInt(window.localStorage.getItem("i"));
 function makeQuestion(){   
-	if(i>=2){
-		response["round1score"]=score;
-		
-		 fetch('/round1', {
-			method: 'POST',
-			headers: {
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(response)
-		  });
-		  	
+	if(i>=2){		
 	window.location="torf_quiz.html";
 	}  
-	console.log(i)
-	console.log(arr.length)
-	console.log(arr[i].Question)
+
 	document.getElementById("question").innerHTML=arr[i].Question;
 	document.getElementById("question_kan").innerHTML=arr[i + 1].Question;
 	document.getElementById("0").innerHTML="1. "+arr[i].Option1+"/"+arr[i + 1].Option1;
@@ -72,23 +59,27 @@ function makeQuestion(){
 	document.getElementById("2").innerHTML="3. "+arr[i].Option3+"/"+arr[i + 1].Option3;
 	document.getElementById("3").innerHTML="4. "+arr[i].Option4+"/"+arr[i + 1].Option4;
 	correctans=arr[i].Answer+"/"+arr[i+1].Answer;
-	i += 2;
+	
+	
 }
 function displayRightAns(){
 	document.getElementById("nextbutton").disabled=true;
-	document.getElementById("test").innerHTML = correctans;
+	document.getElementById("test").innerHTML ="CORRECT ANSWER: " +correctans;
 	if(correctans==ans.slice(3)){
 		score++;
 	}
-	response["choice"+i]=ans;
+	response["round1choice"+(i/2)]=ans;
+	
 	ans="";
-	console.log(response);
-	console.log("SCORE",score);
+	i += 2;
+	window.localStorage.setItem("i",i);
+	window.localStorage.setItem("response",JSON.stringify(response));
+	window.localStorage.setItem("score",score);
 	setTimeout(()=>{
 		document.getElementById("nextbutton").disabled=false;
-		document.getElementById("test").innerHTML = "";
+		document.getElementById("test").innerHTML = " ";
 		makeQuestion();
-	},5000);
+	},1000);
 	
 }
 
@@ -111,10 +102,7 @@ function functionA(btn){
 	
 }
 
-window.onunload = function(){
-    
-	window.localStorage.setItem("timer",timer);
-}
-// function preventBack() { window.history.forward(); }  
-// setTimeout("preventBack()", 0);  
-// window.onunload = function () { null };  
+function preventBack() { window.history.forward(); }  
+setTimeout("preventBack()", 0);  
+window.onunload = function () { null };  
+

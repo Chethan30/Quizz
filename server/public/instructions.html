@@ -11,10 +11,7 @@
     background: #90ffcf;
 }
 
-::selection{
-    color: #fff;
-    background: #90ffcf;
-}
+
 
 .start_btn,
 .info_box{
@@ -26,34 +23,11 @@
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.info_box.activeInfo{
-    opacity: 1;
-    z-index: 5;
-    pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.start button{
-  background-color: #90ffcf;
-  border: none;
-  color: black;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 25px;
-  cursor: pointer;
-  width:250px;
-  font-weight: bold;
-}
-
 .info_box{
     width: 540px;
     background: #fff;
     border-radius: 5px;
     transform: translate(-50%, -50%) scale(0.9);
-   
-    pointer-events: none;
     transition: all 0.3s ease;
 }
 
@@ -97,7 +71,6 @@
     width: 100px;
     font-size: 16px;
     font-weight: 500;
-    cursor: pointer;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -111,11 +84,11 @@
     <div class="info_box">
         <div class="info-title"><span>Instructions</span></div>
         <div class="info-list">
-            <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
-            <div class="info">2. Once you select your answer, it can't be undone.</div>
-            <div class="info">3. You can't select any option once time goes off.</div>
-            <div class="info">4. You can't exit from the Quiz while you're playing.</div>
-            <div class="info">5. You'll get points on the basis of your correct answers.</div>
+            <div class="info">1. You will have a total of <span>60 minutes</span> to complete the quiz.</div>
+            <div class="info">2. Once you select your answer and press submit, you cannot change it.</div>
+            <div class="info">3. You will be disqualified if you open other tabs while taking the quiz.</div>
+            <div class="info">4. You'll get one point for every correct answer. If your answer is wrong, you'll get zero points. There is no negative marking.</div>
+            <div class="info">5. Do not take the quiz more than once. You will be disqualified otherwise.</div>
             
         </div>
         <div class="buttons">
@@ -127,7 +100,12 @@
 <script>
     document.getElementById("start").addEventListener('click',()=>{
         window.location.href="quiz.html";
-    })
+    });
+    
+function preventBack() { window.history.forward(); }  
+setTimeout("preventBack()", 0);  
+window.onunload = function () { null };  
+
 </script>
 
 </html>

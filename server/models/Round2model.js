@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 var round2Schema = new mongoose.Schema({
+    QNO:{
+        type:Number
+    },
     Question:{
         type:String
     },
