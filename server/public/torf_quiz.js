@@ -43,7 +43,7 @@ var comments = "";
 var response = JSON.parse(window.localStorage.getItem("response"));
 var score = parseInt(window.localStorage.getItem("score"));
 function makeQuestion() {
-  if (j >= 2) {
+  if (j >= arr.length) {
     window.location = "image_quiz.html";
   }
   document.getElementById("question").innerHTML = arr[j].Question;
@@ -68,8 +68,10 @@ function displayRightAns() {
   window.localStorage.setItem("score", score);
   setTimeout(() => {
     document.getElementById("nextbutton").disabled = false;
+    document.getElementById("answer").innerHTML="";
+    document.getElementById("comments").innerHTML="";
     makeQuestion();
-  }, 3000);
+  }, 2000);
 }
 
 function recordAns(option) {

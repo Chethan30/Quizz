@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded',() => {
 	function countdown(){
 		makeQuestion();
 		setInterval(function(){
-			console.log(timer);
 			minutes = parseInt(timer / 60, 10);
 			seconds = parseInt(timer % 60, 10);	
 			minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -48,7 +47,7 @@ var response=JSON.parse(window.localStorage.getItem("response"));
 var score=parseInt(window.localStorage.getItem("score"));
 var i=parseInt(window.localStorage.getItem("i"));
 function makeQuestion(){   
-	if(i>=2){		
+	if(i>=arr.length){		
 	window.location="torf_quiz.html";
 	}  
 
@@ -79,7 +78,7 @@ function displayRightAns(){
 		document.getElementById("nextbutton").disabled=false;
 		document.getElementById("test").innerHTML = " ";
 		makeQuestion();
-	},1000);
+	},2000);
 	
 }
 

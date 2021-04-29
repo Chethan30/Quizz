@@ -6,19 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <Style>
+    <style>
         body{
     background: #90ffcf;
 }
-
-
 
 .start_btn,
 .info_box{
     position: absolute;
     top: 50%;
-    left: 50%;
-    
+    left: 50%;  
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -77,8 +74,12 @@
     border: 1px solid #90ffcf;
     transition: all 0.3s ease;
 }
-
-    </Style>
+@media (min-width:300px) and (max-width:800px){
+    .info_box{
+        width: 320px;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="info_box">
@@ -98,6 +99,7 @@
     </div>
 </body>
 <script>
+    console.log(window.localStorage.getItem("response"));
     document.getElementById("start").addEventListener('click',()=>{
         window.location.href="quiz.html";
     });
