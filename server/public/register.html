@@ -93,15 +93,12 @@
       font-weight:900;
       color: rgb(0, 0, 0);
       cursor: pointer;
-
       min-width: 150px;
       }
       button:hover {
       background:  #49ffb0;
       }
 
-    /* Info-Modal */
-  
 
     </style>
   </head>
@@ -110,7 +107,7 @@
     <!-- Register-dialogue -->
 
     <div class="testbox">
-      <form action="/registrationdone" method="POST" >
+      <form id="fid" action="/registrationdone" >
         
             <br>
             <div class=" item">
@@ -149,7 +146,7 @@
           
             <div class="col-8 col-sm-9 col-md-8 col-lg-6 btn-block">
               <!-- <button type="submit" >Submit</button> -->
-              <div class="start_btn"><button>Submit</button></div>
+              <div class="start_btn" ><button id="sub" onclick="detailsStore()">Submit</button></div>
             </div>
             
       </form>
@@ -159,9 +156,21 @@
   	window.localStorage.setItem("i",0);
     window.localStorage.setItem("j",0);
     window.localStorage.setItem("k",0);
-		window.localStorage.setItem("response",'{}');
 		window.localStorage.setItem("score",0);
     window.localStorage.setItem("timer",3600);
+    window.localStorage.setItem("response","{}")
+    var res={};
+    function detailsStore(){
+    res["name"]=document.getElementById("fname").value;
+    res["phonenumber"]=document.getElementById("pnumber").value;
+    res["emailid"]=document.getElementById("emailadd").value;
+    res["schoolname"]=document.getElementById("SchoolName").value;
+    res["class"]=document.getElementById("class").value;
+    res["section"]=document.getElementById("section").value;
+    res["district"]=document.getElementById("district").value;
+    window.localStorage.setItem("response",JSON.stringify(res));
+    }
+   
 function preventBack() { window.history.forward(); }  
 setTimeout("preventBack()", 0);  
 window.onunload = function () { null };  
