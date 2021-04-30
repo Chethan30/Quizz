@@ -87,19 +87,19 @@ function displayRightAns(){
 	},2000);
 }
 
-function storeChoice(btn){
+var flag= -1
+function functionA(btn){
 	if(btn==0){
-		ans = document.getElementById("0").innerHTML;
-		
+		flag = 0 	
 	}
 	if(btn==1){
-		ans = document.getElementById("1").innerHTML;
+		flag = 1
 	}
 	if(btn==2){
-		ans = document.getElementById("2").innerHTML;
+		flag = 2
 	}
 	if(btn==3){
-		ans = document.getElementById("3").innerHTML;
+		flag = 3
 	}
 }
 
