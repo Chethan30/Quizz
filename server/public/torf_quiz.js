@@ -54,31 +54,41 @@ function makeQuestion() {
 }
 
 function displayRightAns() {
-  document.getElementById("nextbutton").disabled = true;
-  document.getElementById("answer").innerHTML ="CORRECT ANSWER: " + correctans;
-  document.getElementById("comments").innerHTML = comments;
-  if (cans == ans) {
-    score++;
+  if(flag>=0){
+    document.getElementById("nextbutton").disabled = true;
+    document.getElementById("answer").innerHTML ="CORRECT ANSWER: " + correctans;
+    document.getElementById("comments").innerHTML = comments;
+    if (cans == ans) {
+      score++;
+    }
+    response["round2choice" + j / 2] = ans;
+    ans = "";
+    j += 2;
+    window.localStorage.setItem("j", j);
+    window.localStorage.setItem("response", JSON.stringify(response));
+    window.localStorage.setItem("score", score);
+    setTimeout(() => {
+      document.getElementById("nextbutton").disabled = false;
+      document.getElementById("answer").innerHTML="";
+      document.getElementById("comments").innerHTML="";
+      makeQuestion();
+      location.reload();
+    }, 2000);
   }
-  response["round2choice" + j / 2] = ans;
-  ans = "";
-  j += 2;
-  window.localStorage.setItem("j", j);
-  window.localStorage.setItem("response", JSON.stringify(response));
-  window.localStorage.setItem("score", score);
-  setTimeout(() => {
-    document.getElementById("nextbutton").disabled = false;
-    document.getElementById("answer").innerHTML="";
-    document.getElementById("comments").innerHTML="";
-    makeQuestion();
-  }, 2000);
+  else{
+    document.getElementById("test").innerHTML ="Choose an option";
+  }
+ 
 }
 
+var flag = -1
 function recordAns(option) {
   if (option == 0) {
+    flag = 0;
     ans = "true";
   }
   if (option == 1) {
+    flag = 1;
     ans = "false";
   }
 }

@@ -16,46 +16,44 @@
     <body>
 
          <!-- Vavigation bar with Timer -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-           <div class="time_align">
-                <div class="timer">  
-                    &nbsp;TIME :&nbsp; <span id="timer">0</span>
-                </div>  
-            </div>
-	
-        </nav>
-        
-         <!-- Quiz Box -->
-        <div class="container">
-            <div class="type">Multiple Choice Question</div>
-            <div class="qnumber"> Question : </div>
-            
-            <div class="questions">
-                <div class="question" id="question"></div>
-                <div class="question_kan" id="question_kan"></div>
-            </div>
-            
-            <div class="options_list">
-                
-                <input type="radio" id="10" onclick="functionA(0)" name="option" value="0">
-                <label for="10" id="0"></label>
-                <br>
-                <input type="radio" id="11" onclick="functionA(1)" name="option" value="1">
-                <label for="11" id="1"></label>
-                <br>
-                <input type="radio" id="12" onclick="functionA(2)" name="option" value="2">
-                <label for="12" id="2"></label>
-                <br>
-                <input type="radio" id="13" onclick="functionA(3)" name="option" value="3">
-                <label for="13" id="3"></label>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="time_align">
+                 <div class="timer">  
+                     &nbsp;TIME :&nbsp; <span id="timer">0</span>
+                 </div>  
+             </div>
+     
+         </nav>
+         
+          <!-- Quiz Box -->
+         <div class="container">
+             <div class="type">Multiple Choice Question</div>
+             <div class="qnumber"> Question : </div>
              
-            </div>
-
-            <div class="buttons">
-                <button class="next"  id="nextbutton" onclick="displayRightAns()">
-                   Submit
-                </button>
-                <p id="test"> </p>
+             <div class="questions">
+                 <div class="question" id="question"></div>
+                 <div class="question_kan" id="question_kan"></div>
+             </div>
+             
+             <div class="options_list">
+                 
+                 <input type="radio" id="10" onclick="functionA(0)" name="option" value="0">
+                 <label for="10" id="0"></label>
+                 <br>
+                 <input type="radio" id="11" onclick="functionA(1)" name="option" value="1">
+                 <label for="11" id="1"></label>
+                 <br>
+                 <input type="radio" id="12" onclick="functionA(2)" name="option" value="2">
+                 <label for="12" id="2"></label>
+                 <br>
+                 <input type="radio" id="13" onclick="functionA(3)" name="option" value="3">
+                 <label for="13" id="3"></label>
+              
+             </div>
+ 
+             <div class="buttons">
+                <button class="next"  id="nextbutton" onclick="displayRightAns()">Submit</button>
+                <p id="test"></p>
 
             </div>
         
