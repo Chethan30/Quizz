@@ -1,80 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="register.css">
-    <title> Register </title>
-	
-  </head>
-  <body>
-
-    <!-- Register-dialogue -->
-
-    <div class="container">
-
-      <div class="title">Registration</div>
-      <form id="fid" action="/registrationdone" >
-
-        <div class="details">
-
-          <div class=" item">
-            <label for="fname"> Name / ಹೆಸರು<span>*</span></label>
-            <input id="fname" type="text" name="fname" required/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form id="fid" action="/registrationdone">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details"> Name / ಹೆಸರು</span>
+            <input id="fname" type="text" name="fname" required>
           </div>
-
-              <div class="item">
-                <label for="pnumber"> Phone Number / ಫೋನ್ ನಂಬರ್<span>*</span></label>
-                <input id="pnumber" type="tel" name="pnumber" required/>
-              </div>
-
-              <div class="item">
-                <label for="SchoolName">School / ಶಾಲೆ<span>*</span></label>
-                <input id="SchoolName" type="text"   name="SchoolName" required/>
-              </div>
-
-              <div class="item">
-                <label for="class">Class / ತರಗತಿ<span>*</span></label>
-                <label for="cars"><br></label>
-                  <select id="class" name="class" required>
-                    <option value="1">1/೧</option>
-                    <option value="2">2/೨</option>
-                    <option value="3">3/೩</option>
-                    <option value="4">4/೪</option>
-                    <option value="5">5/೫</option>
-                    <option value="6">6/೬</option>
-                    <option value="7">7/೭</option>
-                    <option value="8">8/೮</option>
-                    <option value="9">9/೯</option>
-                    <option value="10">10/೧೦</option>
-                  </select>
-              </div>
-
-              <div class="item">
-                <label for="section">Section / ವಿಭಾಗ<span>*</span></label>
-                <input id="section" type="text" name="section" required/>
-              </div>
-
-              <div class="item">
-                <label for="district">District / ಜಿಲ್ಲೆ<span>*</span></label>
-                <input id="district" type="text"   name="district" required/>
-              </div>
-          
-          
+          <div class="input-box">
+            <span class="details">Phone Number / ಫೋನ್ ನಂಬರ್</span>
+            <input id="pnumber" type="tel" name="pnumber" required>
+          </div>
+          <div class="input-box">
+            <span class="details">School / ಶಾಲೆ</span>
+            <input id="SchoolName" type="text"   name="SchoolName" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Class / ತರಗತಿ</span>
+            <select id="class" name="class" required>
+                <option value="1">1/೧</option>
+                <option value="2">2/೨</option>
+                <option value="3">3/೩</option>
+                <option value="4">4/೪</option>
+                <option value="5">5/೫</option>
+                <option value="6">6/೬</option>
+                <option value="7">7/೭</option>
+                <option value="8">8/೮</option>
+                <option value="9">9/೯</option>
+                <option value="10">10/೧೦</option>
+              </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Section / ವಿಭಾಗ</span>
+            <input id="section" type="text" name="section" required>
+          </div>
+          <div class="input-box">
+            <span class="details">District / ಜಿಲ್ಲೆ</span>
+            <input id="district" type="text"   name="district" required>
+          </div>
         </div>
-            <br>
-            
-          <!-- Submit Button -->
-            <div class="button">
-              <!-- <button type="submit" >Submit</button> -->
-              <div class="start_btn" ><button id="sub" onclick="detailsStore()">Submit</button></div>
+    
+        <div class="button">
+            <div class="start_btn" id="sub" onclick="detailsStore()">
+                <input type="submit" value="Register">
             </div>
-            
+        </div>
       </form>
     </div>
+  </div>
 
-<script>
+  <script>
   	window.localStorage.setItem("i",0);
     window.localStorage.setItem("j",0);
     window.localStorage.setItem("k",0);
@@ -98,5 +81,7 @@ setTimeout("preventBack()", 0);
 window.onunload = function () { null };  
 
 </script>
-  </body>
+
+
+</body>
 </html>
