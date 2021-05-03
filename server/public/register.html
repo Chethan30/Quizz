@@ -4,147 +4,69 @@
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="register.css">
     <title> Register </title>
-	<style>
-      html, body {
-      min-height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      }
-
-      body, div, form, input{ 
-      padding: 0;
-      margin: 50;
-      outline: none;
-      font-family: Roboto, Arial, sans-serif;
-      font-size: 17px;
-      font-weight: bold;
-      color: rgb(0, 0, 0);
-      line-height: 22px;
-      }
-
-      .testbox {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      padding: 20px;
-      margin-top: 10px;
-      }
-
-      form {
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-      margin: 3%;
-      border-radius: 16px;
-      background:#efefef;
-      box-shadow: 0 0 8px  #000000; 
-      }
-      
-      input {
-        margin-bottom: 6px;
-        border: 0px solid #ccc;
-        border-radius: 20px;
-        width: calc(100% - 10px);
-        padding: 5px;
-      }
-      
-      input:hover::placeholder {
-      color:  #669969;
-      }
-      .item input:hover{
-      border: 1px solid transparent;
-      box-shadow: 0 0 3px 0  #669999;
-      color: #669969;
-      }
-      
-      .item {
-      position: relative;
-      margin: 12px 0;
-      }
-      .item span {
-      color: red;
-      }
-     
-      .colums {
-      display:flex;
-      justify-content:space-between;
-      flex-direction:row;
-      flex-wrap:wrap;
-      }
-
-      .colums div {
-      width:40%;
-      }
-
-      .btn-block {
-      display: absolute;
-      margin-top: 30px;
-      text-align: center;
-      }
-
-      button {
-      width:30%;
-      padding: 15px;
-      border: none;
-      border-radius: 20px; 
-      background:  #90ffcf;
-      font-size: 30px;
-      font-weight:900;
-      color: rgb(0, 0, 0);
-      cursor: pointer;
-      min-width: 150px;
-      }
-      button:hover {
-      background:  #49ffb0;
-      }
-
-
-    </style>
+	
   </head>
   <body>
 
     <!-- Register-dialogue -->
 
-    <div class="testbox">
-      <form id="fid" action="/registrationdone" >
-        
-            <br>
-            <div class=" item">
-              <label for="fname"> Name / ಹೆಸರು<span>*</span></label>
-              <input id="fname" type="text" name="fname" style="width:auto" required/>
-            </div>
+    <div class="container">
 
-           <div class="col-8 col-sm-9 col-md-8 col-lg-6 colums">
+      <div class="title">Registration</div>
+      <form id="fid" action="/registrationdone" >
+
+        <div class="details">
+
+          <div class=" item">
+            <label for="fname"> Name / ಹೆಸರು<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
 
               <div class="item">
                 <label for="pnumber"> Phone Number / ಫೋನ್ ನಂಬರ್<span>*</span></label>
                 <input id="pnumber" type="tel" name="pnumber" required/>
               </div>
-              <div class="item">
-                <label for="emailadd">Email / ಇಮೇಲ್<span>*</span></label>
-                <input id="emailadd" type="email"   name="emailadd" required/>
-              </div>
+
               <div class="item">
                 <label for="SchoolName">School / ಶಾಲೆ<span>*</span></label>
                 <input id="SchoolName" type="text"   name="SchoolName" required/>
               </div>
+
               <div class="item">
-                <label for="class">Class / ವರ್ಗ<span>*</span></label>
-                <input id="class" type="number"   name="class" required/>
+                <label for="class">Class / ತರಗತಿ<span>*</span></label>
+                <label for="cars"><br></label>
+                  <select id="class" name="class" required>
+                    <option value="1">1/೧</option>
+                    <option value="2">2/೨</option>
+                    <option value="3">3/೩</option>
+                    <option value="4">4/೪</option>
+                    <option value="5">5/೫</option>
+                    <option value="6">6/೬</option>
+                    <option value="7">7/೭</option>
+                    <option value="8">8/೮</option>
+                    <option value="9">9/೯</option>
+                    <option value="10">10/೧೦</option>
+                  </select>
               </div>
+
               <div class="item">
                 <label for="section">Section / ವಿಭಾಗ<span>*</span></label>
                 <input id="section" type="text" name="section" required/>
               </div>
+
               <div class="item">
                 <label for="district">District / ಜಿಲ್ಲೆ<span>*</span></label>
                 <input id="district" type="text"   name="district" required/>
               </div>
           
-            </div>
           
-            <div class="col-8 col-sm-9 col-md-8 col-lg-6 btn-block">
+        </div>
+            <br>
+            
+          <!-- Submit Button -->
+            <div class="button">
               <!-- <button type="submit" >Submit</button> -->
               <div class="start_btn" ><button id="sub" onclick="detailsStore()">Submit</button></div>
             </div>
