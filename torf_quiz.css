@@ -1,0 +1,115 @@
+ body {
+    background-color: #90FFCF;
+	background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("bg3.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+        }
+.container {
+    display: absolute;
+	margin-top: 24px;
+	border: 5px solid #90FFCF;	
+	background-color: rgba(255, 255, 255, 0.98);
+	padding: 18px;
+	border-radius: 18px;
+
+        }
+
+.type{
+    font-weight: bolder;
+    font-size: 180%;
+}
+.qnumber{
+    font-weight: bold;
+    font-size: 150%;
+    padding-bottom: 24px;
+}
+.question, .question_kan{
+    font-weight: 500;
+    font-size: 130%;
+    padding-left: 10px;
+}
+.questions{
+    padding-bottom: 18px;
+}
+.timer{
+    background-color: efefef;
+    width: 200px;
+    border: 3px solid #FF3B3B;
+    padding: 3px;
+    margin: 0px; 
+    border-radius: 16px;
+    color:#A10000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.time_align{
+    width: 300px;
+    position: relative;
+    left: 50%;
+    top: 0;
+    margin-left: -110px;
+}
+.next{
+    background-color: #90FFCF;
+    border: none;
+    color: black;
+    font-weight: 500;
+    
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 10px;
+
+    position: relative;
+    width: 120px;
+    left: 50%;
+    top: 0;
+    margin-left: -60px;
+}
+.next:hover{
+    background-color: #19E68E;
+    color: white;
+    font-weight: 600;
+}
+
+input[type="radio"]{
+    display: none;
+}
+label{
+    background-color: #E8E8E8;
+    color: black;
+    font-size: 16px;
+    border: 1px solid grey;
+    border-radius: 15px;
+
+    /* position: relative; */
+    display: flex;
+    max-width: 500px;
+
+    padding: 10px;
+    align-items: center;
+}
+input[type="radio"]:checked + label{
+    font-weight: 500;
+    background-color: #D9D9D9;
+
+    border: solid;
+    border-color: black;
+    border-width: 3px;
+}
+#answer, #comments{
+    margin: 8px;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 5px;
+
+    align-items: center;
+   
+
+}
+
+
+
