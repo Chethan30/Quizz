@@ -1,5 +1,5 @@
 body{
-    background-color:#90FFCF;
+    background: linear-gradient(315deg, hsla(154, 100%, 78%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
 }
 .container{
     display: absolute;
@@ -51,7 +51,7 @@ body{
     margin-left: -110px;
 }
 .next{
-    background-color: #90FFCF;
+    background: linear-gradient(315deg, hsla(154, 100%, 78%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
     border: none;
     color: black;
     font-weight: 500;
