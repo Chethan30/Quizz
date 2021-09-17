@@ -11,7 +11,10 @@ body{
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: linear-gradient(315deg, hsla(154, 100%, 78%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);}
+  background-image: url(pattern1.png), url(background.png);
+            background-size: cover, 100%;
+            background-blend-mode: overlay;
+}
 .container{
   max-width: 700px;
   width: 100%;
