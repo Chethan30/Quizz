@@ -146,10 +146,11 @@ app.post(
   }
 );
 
-app.get("/takequiz", (req, res) => {
+app.get("/takequiz", (req, res) => {	
   mongo_oper
     .second(connect.getConnection)
     .then(function (r) {
+      console.log((r))
       res.json(r);
     })
     .catch(function (err) {
@@ -227,7 +228,7 @@ app.get("/admins/mailresponse", (req, res) => {
  
   let openedDir = fs.opendirSync(directory_name);
   let filesLeft = true;
-  fs.open('finalresponse.txt', 'w', function (err, file) {
+  fs.open('finalresponse.csv', 'w', function (err, file) {
     if (err) throw err;
   
   });
@@ -235,13 +236,13 @@ app.get("/admins/mailresponse", (req, res) => {
     let fileDirent = openedDir.readSync();
     if (fileDirent != null) {
     var data= fs.readFileSync("./responses/"+fileDirent.name, "utf8");
-    fs.appendFileSync('finalresponse.txt',data+"\n");
+    fs.appendFileSync('finalresponse.csv',data.substring(1, data.length-1)+"\n");
     }
     
     else filesLeft = false;
   }
  
- res.download("finalresponse.txt")
+ res.download("finalresponse.csv")
 });
 app.get('/admins/del',()=>{
   const fs = require('fs').promises;
